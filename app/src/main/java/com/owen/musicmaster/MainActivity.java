@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,20 @@ public class MainActivity extends AppCompatActivity {
         //step 5
         //create the play music player
         mMediaPlayer = MediaPlayer.create(this,R.raw.raw_misc_sample);
+
+        //step 7
+        // add functionality to loop the music.
+        mSwitch = findViewById(R.id.switch_loopMusic);
+
+        //step 8
+        //add a listener to the music
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //loop after checking the media file is checked to loop
+                mMediaPlayer.setLooping(isChecked);
+            }
+        });
     }
     public void playMusic(View view) {
         mMediaPlayer.start();
